@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // linkActiveClass: "active",
   routes: [
     {
         path: '/',
