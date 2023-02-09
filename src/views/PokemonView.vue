@@ -29,7 +29,7 @@ getData();
 </script>
 
 <template>
-    <img :src="pokemonData.sprites.front_default"/>
+    <img :src="pokemonData.sprites?.front_default" alt=""/>
     <h1>Nombre del pokemon: {{ $route.params.pokemon }}</h1>
 
     <p><button @click="volverAtras">Volver atrás</button></p>
