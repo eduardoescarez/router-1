@@ -3,14 +3,14 @@
 import axios from "axios";
 import { ref } from "vue";
 
-const pokemons = ref([])
+const pokemons = ref([]);
 
 const getData = async () => {
     try {
-        const {data} = await axios.get("https://pokeapi.co/api/v2/pokemon/")
-        console.log(data.results)
+        const { data } = await axios.get("https://pokeapi.co/api/v2/pokemon");
+        pokemons.value = data.results;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
@@ -18,4 +18,7 @@ getData();
 </script>
 <template>
     <h1>Pokemones</h1>
+    <ul>
+        <li v-for="pokemon in pokemons">{{ pokemon.name }}</li>
+    </ul>
 </template>
