@@ -2,15 +2,17 @@
 
 import axios from "axios";
 import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+const ruta = useRoute();
 
 const dataPokemon = ref([]);
 
 
 const getData = async () => {
     try {
-        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/pikachu`);
-        dataPokemon.value = data
-        console.log(dataPokemon.value);
+        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
+        console.log(data);
     } catch (error) {
         console.log(error);
     }
