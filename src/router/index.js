@@ -27,7 +27,11 @@ const router = createRouter({
         name:"pokemon-single",
         component: () => import('../views/PokemonView.vue')
     },
-
+    {
+        path: "/:pathMatch(.*)*",
+        name: "noencontrado",
+        component: () => import("../views/NoEncontrado.vue"),
+    },
   ]
 })
 
