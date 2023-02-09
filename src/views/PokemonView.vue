@@ -2,11 +2,15 @@
 
 import axios from "axios";
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const ruta = useRoute();
+const rutaDos = useRouter();
 
-const dataPokemon = ref([]);
+
+const back = () => {
+    rutaDos.push('/pokemons')
+}
 
 
 const getData = async () => {
@@ -25,4 +29,6 @@ getData();
 
 <template>
     <h1>Nombre del pokemon: {{ $route.params.pokemon }}</h1>
+
+    <p><button @click="back">Volver atrás</button></p>
 </template>
