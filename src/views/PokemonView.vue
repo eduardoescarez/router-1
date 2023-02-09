@@ -10,7 +10,7 @@ const rutaDos = useRouter();
 const pokemonData = ref([]);
 
 const volverAtras = () => {
-    rutaDos.push('/pokemons')
+    rutaDos.push('/pokemons');
 }
 
 
@@ -20,6 +20,7 @@ const getData = async () => {
         pokemonData.value = data;
     } catch (error) {
         console.log(error);
+        pokemonData.value = null;
     }
 };
 
@@ -29,8 +30,13 @@ getData();
 </script>
 
 <template>
+    <div v-if="pokemonData">
     <img :src="pokemonData.sprites?.front_default" alt=""/>
     <h1>Nombre del pokemon: {{ $route.params.pokemon }}</h1>
+    </div>
+    <div v-else>
+        No existe el pokemon
+    </div>
 
     <p><button @click="volverAtras">Volver atrás</button></p>
 </template>
