@@ -7,8 +7,9 @@ import { useRoute, useRouter } from "vue-router";
 const ruta = useRoute();
 const rutaDos = useRouter();
 
+const pokemonData = ref([]);
 
-const back = () => {
+const volverAtras = () => {
     rutaDos.push('/pokemons')
 }
 
@@ -16,7 +17,7 @@ const back = () => {
 const getData = async () => {
     try {
         const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
-        console.log(data);
+        pokemonData.value = data;
     } catch (error) {
         console.log(error);
     }
@@ -28,7 +29,8 @@ getData();
 </script>
 
 <template>
+    <img :src="pokemonData.sprites.front_default"/>
     <h1>Nombre del pokemon: {{ $route.params.pokemon }}</h1>
 
-    <p><button @click="back">Volver atrás</button></p>
+    <p><button @click="volverAtras">Volver atrás</button></p>
 </template>
