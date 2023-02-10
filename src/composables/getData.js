@@ -5,6 +5,7 @@ export const useGetData = () => {
 
     const data = ref(null);
     const loading = ref(true);
+    const errorGeneral = ref(null);
 
     const getData = async (url) => {
         loading.value = true;
@@ -12,15 +13,17 @@ export const useGetData = () => {
             const resultado = await axios.get(url);
             data.value = resultado.data;
         } catch (error) {
-            console.log(error);
+            // console.log(error)
+            errorGeneral.value = "Error del servidor";
         } finally {
-            loading.value = false
+            loading.value = false;
         }
     };
 
     return {
         getData,
         data,
-        loading
+        loading,
+        errorGeneral
     }
 }

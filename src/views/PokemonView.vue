@@ -10,13 +10,14 @@ const volverAtras = () => {
     rutaAtras.push('/pokemones');
 }
 
-const {getData, data, loading} = useGetData();
+const {getData, data, loading, errorGeneral} = useGetData();
 
 getData(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
 </script>
 
 <template>
     <p v-if="loading">Cargardo información</p>
+    <div class="alert alert-danger mt-2" v-if="errorGeneral">{{ errorGeneral }}</div>
     <div v-if="data" class="container"> 
         
         <div v-if="data">
@@ -35,13 +36,6 @@ getData(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
             <div class="row">
                 <div class="col"><h2>Movimientos</h2></div>
                 <div class="col"><ul class="list-group"><li v-for="moves in data.moves" class="list-group-item list-group-item-action">{{ moves.move.name }}</li></ul></div>
-            </div>
-        </div>
-
-        <div v-else>
-            <div class="alert alert-danger gx-5 mt-5" role="alert">
-                <h2>Pokemon no existe</h2>
-                <p><span class="fw-bold">Aviso:</span> Este pokemon no existe, seleccione <router-link to="/pokemones" class="alert-link">uno de la lista principal</router-link> </p>
             </div>
         </div>
     </div>
