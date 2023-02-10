@@ -1,42 +1,28 @@
 <script setup>
-
-import axios from "axios";
-import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import FlechaAtras from "../components/FlechaAtras.vue"
+import { useGetData } from "../composables/getData"
 
 const ruta = useRoute();
-const rutaDos = useRouter();
-
-const pokemonData = ref([]);
+const rutaAtras = useRouter();
 
 const volverAtras = () => {
-    rutaDos.push('/pokemones');
+    rutaAtras.push('/pokemones');
 }
 
+const {getData, data, loading} = useGetData();
 
-const getData = async () => {
-    try {
-        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
-        pokemonData.value = data;
-    } catch (error) {
-        console.log(error);
-        pokemonData.value = null;
-    }
-};
-
-getData();
-
-
+getData(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
 </script>
 
 <template>
-    <div class="container"> 
+    <p v-if="loading">Cargardo información</p>
+    <div v-if="data" class="container"> 
         
-        <div v-if="pokemonData">
+        <div v-if="data">
             <div class="row">
                 <div class="col d-flex align-items-center" ><button @click="volverAtras" type="button" class="btn btn-outline-primary"><FlechaAtras/> Volver a la lista</button></div>
-                <div class="col"><img :src="pokemonData.sprites?.front_default" alt=""/></div>
+                <div class="col"><img :src="data.sprites?.front_default" alt=""/></div>
             </div>
             <div class="row">
                 <div class="col"><h1>Nombre del pokemon</h1></div>
@@ -44,11 +30,11 @@ getData();
             </div>
             <div class="row">
                 <div class="col"><h2>Tipo</h2></div>
-                <div class="col"><ul class="list-group"><li v-for="types in pokemonData.types" class="list-group-item list-group-item-action">{{ types.type.name }}</li></ul></div>
+                <div class="col"><ul class="list-group"><li v-for="types in data.types" class="list-group-item list-group-item-action">{{ types.type.name }}</li></ul></div>
             </div>
             <div class="row">
                 <div class="col"><h2>Movimientos</h2></div>
-                <div class="col"><ul class="list-group"><li v-for="moves in pokemonData.moves" class="list-group-item list-group-item-action">{{ moves.move.name }}</li></ul></div>
+                <div class="col"><ul class="list-group"><li v-for="moves in data.moves" class="list-group-item list-group-item-action">{{ moves.move.name }}</li></ul></div>
             </div>
         </div>
 
