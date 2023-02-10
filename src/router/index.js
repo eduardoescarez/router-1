@@ -13,17 +13,12 @@ const router = createRouter({
         component: () => import('../views/HomeView.vue')
     },
     {
-        path: '/about',
-        name: 'about',
-        component: () => import('../views/AboutView.vue')
-    },
-    {
-        path:"/pokemons",
-        name:"pokemons",
+        path:"/pokemones",
+        name:"pokemones",
         component: () => import('../views/PokemonsView.vue')
     },
     {
-        path:"/pokemons/:pokemon",
+        path:"/pokemones/:pokemon",
         name:"pokemon-single",
         component: () => import('../views/PokemonView.vue')
     },
