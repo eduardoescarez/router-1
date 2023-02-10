@@ -19,7 +19,15 @@ getData();
 </script>
 <template>
     <h1>Pokemones</h1>
-    <ul>
-        <li v-for="pokemon in pokemons"><router-link :to="`/pokemons/${pokemon.name}`">{{ pokemon.name }}</router-link> </li>
+    <ul class="list-group">
+        <li v-for="pokemon in pokemons"><router-link :to="`/pokemones/${pokemon.name}`" class="list-group-item list-group-item-action">{{ pokemon.name }}</router-link> </li>
     </ul>
 </template>
+
+<style scoped>
+
+    ul {
+    list-style-type: none;
+    }
+    
+</style>

@@ -11,7 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
             </router-link>
             <div>
                 <router-link to="/" class="btn btn-outline-primary" active-class="active">Home</router-link>
-                <router-link to="/pokemons" class="btn btn-outline-primary" active-class="active">Pokemones</router-link>
+                <router-link to="/pokemones" class="btn btn-outline-primary" active-class="active">Pokemones</router-link>
             </div>
         </div>
     </nav>
