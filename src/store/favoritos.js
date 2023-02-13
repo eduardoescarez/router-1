@@ -5,18 +5,17 @@ export const useFavoritosStore = defineStore('favoritos', () => {
 
     const favoritos = ref([]);
 
-    const add = (pokemon) => {
-        favoritos.value.push(pokemon);
-    };
+    const add = (pokemon) => favoritos.value.push(pokemon);
 
-    const remove = (id) => {
-        favoritos.value = favoritos.value.filter(item => item.id !== id);
-    }
+    const remove = (id) => favoritos.value = favoritos.value.filter((item) => item.id !== id);
+
+    const findPokemon = (name) => favoritos.value.find((item) => item.name === name)
 
     return {
         favoritos,
         add,
-        remove
+        remove,
+        findPokemon
     };
 
 
