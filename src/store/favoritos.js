@@ -6,12 +6,17 @@ export const useFavoritosStore = defineStore('favoritos', () => {
     const favoritos = ref([]);
 
     const add = (pokemon) => {
-        favoritos.value.push(pokemon)
+        favoritos.value.push(pokemon);
+    };
+
+    const remove = (id) => {
+        favoritos.value = favoritos.value.filter(item => item.id !== id);
     }
 
     return {
         favoritos,
-        add
+        add,
+        remove
     };
 
 
