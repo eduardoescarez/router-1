@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { useGetData } from "../composables/getData"
+import { useGetData } from "../composables/getData";
 
 
 const {getData, data, loading, errorGeneral} = useGetData();
