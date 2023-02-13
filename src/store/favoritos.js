@@ -5,11 +5,21 @@ export const useFavoritosStore = defineStore('favoritos', () => {
 
     const favoritos = ref([]);
 
-    const add = (pokemon) => favoritos.value.push(pokemon);
+    if(localStorage.getItem('favoritos')){
+        favoritos.value = JSON.parse(localStorage.getItem('favoritos'));
+    }
 
-    const remove = (id) => favoritos.value = favoritos.value.filter((item) => item.id !== id);
+    const add = (pokemon) => {
+        favoritos.value.push(pokemon);
+        localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
+    }
 
-    const findPokemon = (name) => favoritos.value.find((item) => item.name === name)
+    const remove = (id) => {
+        favoritos.value = favoritos.value.filter((item) => item.id !== id);
+        localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
+    }
+
+    const findPokemon = (name) => favoritos.value.find((item) => item.name === name);
 
     return {
         favoritos,
