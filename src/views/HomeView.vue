@@ -1,15 +1,19 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-import { useCounterStore } from "../store/counter.js"
+import { storeToRefs } from 'pinia';
+import TheWelcome from '../components/TheWelcome.vue';
+import { useCounterStore } from "../store/counter.js";
 
-const useCounter = useCounterStore()
+const useCounter = useCounterStore();
+
+const { increment } =  useCounter;
+const { count, double } = storeToRefs(useCounter);
 </script>
 
 <template>
     <div>
-        <h2>Home counter : {{ useCounter.count }}</h2>
-        <h2>Double : {{ useCounter.double }}</h2>
-        <button @click="useCounter.increment">Increment</button>
+        <h2>Home counter : {{ count }}</h2>
+        <h2>Double : {{ double }}</h2>
+        <button @click="increment">Increment</button>
     </div>
     <TheWelcome />
 
