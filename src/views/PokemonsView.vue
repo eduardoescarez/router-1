@@ -1,9 +1,13 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { useGetData } from "../composables/getData";
+import { useFormatter} from "../composables/getFormato";
 
 
 const {getData, data, loading, errorGeneral} = useGetData();
+
+const {formatter} = useFormatter();
+
 
 getData("https://pokeapi.co/api/v2/pokemon");
 
@@ -22,7 +26,7 @@ getData("https://pokeapi.co/api/v2/pokemon");
             </div>
         </div>
         <div class="list-group m-2">
-            <router-link v-for="pokemon in data.results" class="list-group-item list-group-item-action" :to="`/pokemones/${pokemon.name}`" >{{ pokemon.name }}</router-link>
+            <router-link v-for="pokemon in data.results" class="list-group-item list-group-item-action" :to="`/pokemones/${pokemon.name}`" >{{ formatter(pokemon.name) }}</router-link>
         </div>
         
         

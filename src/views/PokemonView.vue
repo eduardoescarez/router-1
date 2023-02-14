@@ -1,7 +1,8 @@
 <script setup>
-import FlechaAtras from "../components/FlechaAtras.vue"
+import FlechaAtras from "../components/FlechaAtras.vue";
 import { useRoute, useRouter } from "vue-router";
-import { useGetData } from "../composables/getData"
+import { useGetData } from "../composables/getData";
+import { useFormatter} from "../composables/getFormato";
 import { useFavoritosStore } from "../store/favoritos";
 
 const ruta = useRoute();
@@ -16,7 +17,11 @@ const volverAtras = () => {
 
 const {getData, data, loading, errorGeneral} = useGetData();
 
+const {formatter} = useFormatter();
+
+
 getData(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
+
 </script>
 
 <template>
@@ -31,15 +36,15 @@ getData(`https://pokeapi.co/api/v2/pokemon/${ruta.params.pokemon}`);
             </div>
             <div class="row">
                 <div class="col"><h1>Nombre del pokemon</h1></div>
-                <div class="col"><h1> {{ $route.params.pokemon }}</h1></div>
+                <div class="col"><h1> {{ formatter($route.params.pokemon) }}</h1></div>
             </div>
             <div class="row">
                 <div class="col"><h2>Tipo</h2></div>
-                <div class="col"><ul class="list-group"><li v-for="types in data.types" class="list-group-item list-group-item-action">{{ types.type.name }}</li></ul></div>
+                <div class="col"><ul class="list-group"><li v-for="types in data.types" class="list-group-item list-group-item-action">{{ formatter(types.type.name) }}</li></ul></div>
             </div>
             <div class="row">
                 <div class="col"><h2>Movimientos</h2></div>
-                <div class="col"><ul class="list-group"><li v-for="moves in data.moves" class="list-group-item list-group-item-action">{{ moves.move.name }}</li></ul></div>
+                <div class="col"><ul class="list-group"><li v-for="moves in data.moves" class="list-group-item list-group-item-action">{{ formatter(moves.move.name) }}</li></ul></div>
             </div>
     </div>
 </template>
