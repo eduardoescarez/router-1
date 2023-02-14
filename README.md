@@ -8,5 +8,5 @@ El proyectos se [encuentra aquí](https://pokeapi-vue-3.netlify.app/).
 
 ## Versiones
 
-1.0.0 - 2023-02-09 Versión original
+1.0.0 - 2023-02-09 Versión original \
 1.1.1 - 2023-02-14 Completa el diseño pedido por el proyecto original, corrige problemas menores, y agrega nuevas funciones como exportación a PDF.
