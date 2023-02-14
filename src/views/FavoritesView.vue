@@ -13,7 +13,7 @@ const {formatter} = useFormatter();
 
 <template>
     <div class="container"><h1>Favoritos</h1></div>
-    <h3 v-if="favoritos.length === 0"> Para que esta sección funcione necesitas agregar antes un pokemon como favorito 😅</h3>
+    <div class="container" v-if="favoritos.length === 0"><h3> Para que esta sección funcione necesitas agregar antes un pokemon como favorito 😅</h3></div>
     <div class="container" v-else>
         <div class="row d-flex align-items-center" v-for="pokemon in favoritos" :key="pokemon.id">
             <div class="col-1">
