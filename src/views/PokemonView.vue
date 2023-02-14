@@ -1,9 +1,9 @@
 <script setup>
-import FlechaAtras from "../components/FlechaAtras.vue";
 import { useRoute, useRouter } from "vue-router";
 import { useGetData } from "../composables/getData";
 import { useFormatter} from "../composables/getFormato";
 import { useFavoritosStore } from "../store/favoritos";
+import FlechaAtras from "../components/FlechaAtras.vue";
 
 const ruta = useRoute();
 const rutaAtras = useRouter();

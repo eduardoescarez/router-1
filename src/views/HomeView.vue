@@ -1,7 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import TheWelcome from '../components/TheWelcome.vue';
 import { useCounterStore } from "../store/counter.js";
+
+import TheWelcome from '../components/TheWelcome.vue';
 
 const useCounter = useCounterStore();
 
