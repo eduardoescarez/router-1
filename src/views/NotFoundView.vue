@@ -1,5 +1,5 @@
 <script setup>
-import Advertencia from '../components/Advertencia.vue';
+import Advertencia from '@/components/Advertencia.vue';
 </script>
 
 <template>
